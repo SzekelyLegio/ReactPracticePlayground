@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import { Button, StyleSheet, Text, TextInput, View ,ScrollView,FlatList} from 'react-native';
+import { Button, StyleSheet, TextInput, View,Modal} from 'react-native';
 
 const GoalInput = props =>{
 const [enteredGoal, setEnteredGoal] = useState('');
@@ -7,7 +7,9 @@ const [enteredGoal, setEnteredGoal] = useState('');
 const goalInputHandler = (enteredText) => {
     setEnteredGoal(enteredText);
   };
-return( <View style={styles.inputConatiner}>
+return( 
+<Modal visible={props.visible} animationType="slide">
+<View style={styles.inputConatiner}>
     <TextInput
       placeholder="Mit szeretnél csinálni?"
       style={styles.textInput}
@@ -15,7 +17,8 @@ return( <View style={styles.inputConatiner}>
       value={enteredGoal}
     />
     <Button title="ADD" style={styles.voteButtonStyle} onPress={() => props.onAddGoal(enteredGoal)} />
-    </View>)
+    </View>
+    </Modal>)
 }
 
 const styles = StyleSheet.create({
@@ -31,10 +34,14 @@ const styles = StyleSheet.create({
         marginLeft: 10
       },
       inputConatiner: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
+          flex:1,
+        justifyContent: 'center',
         alignItems: 'center'
       },
+      modalContainer:{
+        padding:50
+
+      }
 
 })
 
