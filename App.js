@@ -9,12 +9,19 @@ export default function App() {
     //cretate a new array and add the elements of the new array
     setCourseGoals(currentGoals => [...currentGoals, {id: Math.random().toString(), value:goalTitle}]);
   };
+
+  const removeGoalHandler = goaliD =>{
+    setCourseGoals(currentGoals => {
+      return currentGoals.filter((goal) => goal.id !== goaliD);
+    });
+  };
+
   return (
     <View style={textInputStyle.mainViewContainer}>
       <GoalInput onAddGoal= {addGoalHandler}/>
       <FlatList
        data={courseGoals} 
-       renderItem={itemData => <GoalItem title ={itemData.item.value}/>}/>
+       renderItem={itemData => <GoalItem  id= {itemData.item.id} onDelete={removeGoalHandler}    title ={itemData.item.value}/>}/>
     </View>
   );
 }
