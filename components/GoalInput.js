@@ -7,6 +7,16 @@ const [enteredGoal, setEnteredGoal] = useState('');
 const goalInputHandler = (enteredText) => {
     setEnteredGoal(enteredText);
   };
+
+
+  const addGoalHandler = () =>{
+    props.onAddGoal(enteredGoal);
+    setEnteredGoal("")
+  };
+
+  const cancelModalHandler = () => {
+      props.isAddModeCanceled()
+  }
 return( 
 <Modal visible={props.visible} animationType="slide">
 <View style={styles.inputConatiner}>
@@ -16,7 +26,17 @@ return(
       onChangeText={goalInputHandler}
       value={enteredGoal}
     />
-    <Button title="ADD" style={styles.voteButtonStyle} onPress={() => props.onAddGoal(enteredGoal)} />
+    <View style ={styles.buttonStackStyle}>
+        <View style={styles.voteButtonStyle}>
+        <Button title="ADD"  onPress={addGoalHandler} />
+        </View>
+   
+    <View style={styles.voteButtonStyle}>
+    <Button title="CANCEL" color="red" onPress={cancelModalHandler} />
+    </View>
+    
+
+    </View>
     </View>
     </Modal>)
 }
@@ -29,9 +49,15 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         padding: 10
       },
- 
+    buttonStackStyle:{
+        flexDirection:'row',
+        padding:10,
+        justifyContent: 'space-between',
+        width: '60%'
+    },
       voteButtonStyle: {
-        marginLeft: 10
+
+        width:'40%'
       },
       inputConatiner: {
           flex:1,
