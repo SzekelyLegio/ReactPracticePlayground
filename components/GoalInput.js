@@ -26,8 +26,17 @@ return(
       onChangeText={goalInputHandler}
       value={enteredGoal}
     />
-    <Button title="ADD" style={styles.voteButtonStyle} onPress={addGoalHandler} />
-    <Button title="CANCEL" color="red" onPress={cancelModalHandler}/>
+    <View style ={styles.buttonStackStyle}>
+        <View style={styles.voteButtonStyle}>
+        <Button title="ADD"  onPress={addGoalHandler} />
+        </View>
+   
+    <View style={styles.voteButtonStyle}>
+    <Button title="CANCEL" color="red" onPress={cancelModalHandler} />
+    </View>
+    
+
+    </View>
     </View>
     </Modal>)
 }
@@ -40,9 +49,15 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         padding: 10
       },
- 
+    buttonStackStyle:{
+        flexDirection:'row',
+        padding:10,
+        justifyContent: 'space-between',
+        width: '60%'
+    },
       voteButtonStyle: {
-        marginLeft: 10
+
+        width:'40%'
       },
       inputConatiner: {
           flex:1,
