@@ -8,6 +8,7 @@ export default function App() {
   const addGoalHandler = goalTitle  => {
     //cretate a new array and add the elements of the new array
     setCourseGoals(currentGoals => [...currentGoals, {id: Math.random().toString(), value:goalTitle}]);
+    setIsAddMode(false);
   };
 
   const removeGoalHandler = goaliD =>{
